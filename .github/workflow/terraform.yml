@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -46,11 +46,11 @@ jobs:
         with:
           scan-type: config
           scan-ref: ./day06/example
-          exit-code: "0" # set to "1" to fail the build on findings
+          exit-code: "1" # set to "1" to fail the build on findings
 
       # Plan needs cloud creds — configure via repo secrets / OIDC for real infra.
-      # - name: Terraform Plan
-      #   run: terraform plan -no-color
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Terraform Plan
+        run: terraform plan -no-color
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

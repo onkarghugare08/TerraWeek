@@ -20,7 +20,7 @@ variable "app_name" {
 
 locals {
   # In prod we run bigger instances — demonstrates workspace/env-driven sizing.
-  instance_type = var.environment == "prod" ? "t3.medium" : "t3.micro"
+  instance_type = var.environment == "prod" ? "t3.small" : "t3.micro"
   name_prefix   = "${var.app_name}-${var.environment}"
 }
 

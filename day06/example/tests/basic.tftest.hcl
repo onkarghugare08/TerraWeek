@@ -20,8 +20,8 @@ run "prod_uses_medium" {
   }
 
   assert {
-    condition     = local.instance_type == "t3.medium"
-    error_message = "prod environment should use t3.medium"
+    condition     = local.instance_type == "t3.small"
+    error_message = "prod environment should use t3.small"
   }
 }
 
@@ -45,7 +45,7 @@ run "rejects_bad_environment" {
   command = plan
 
   variables {
-    environment = "banana"
+    environment = "myone"
   }
 
   expect_failures = [var.environment]
